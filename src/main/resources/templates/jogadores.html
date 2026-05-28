@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TalentoBR — Jogadores</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/style.css">
+  <link rel="stylesheet" href="../styles/jogadores.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <button class="btn-back" onclick="window.location.href='times.html'">← Times</button>
+    <span class="nav-logo-text">TalentoBR</span>
+  </div>
+  <div class="nav-right">
+    <span style="font-size:13px; color:var(--muted)">Olá, <strong id="user-name" style="color:var(--text)">—</strong></span>
+    <button class="btn-logout" onclick="logout()">Sair</button>
+  </div>
+</nav>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="time-badge"><span id="time-modalidade">Time</span></div>
+      <div class="sidebar-title" id="time-nome">CARREGANDO</div>
+      <div class="sidebar-desc">Técnico: <span id="time-tecnico">—</span></div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-num" id="total-jogadores">0</div>
+          <div class="stat-lbl">Atletas</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" id="media-rating">—</div>
+          <div class="stat-lbl">Rating Médio</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-list" id="jogadores-list"></div>
+
+    <button class="btn-add-jogador" onclick="window.location.href='adicionar-jogador.html'">
+      + Adicionar Jogador
+    </button>
+  </aside>
+
+  <div class="content" id="content">
+
+    <div class="empty-content" id="empty-content">
+      <h3>Selecione um atleta</h3>
+      <p>Clique em um jogador da lista para ver suas estatísticas detalhadas.</p>
+    </div>
+
+    <div class="inspect-wrap" id="inspect-wrap">
+
+      <div class="inspect-header">
+        <div class="inspect-avatar" id="inspect-avatar">--</div>
+        <div class="inspect-info">
+          <div class="inspect-nome" id="inspect-nome">—</div>
+          <div class="inspect-sub"  id="inspect-sub">—</div>
+          <div class="inspect-desc" id="inspect-desc">—</div>
+        </div>
+        <div class="inspect-edit" onclick="editarAtual()" title="Editar">✏️</div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-label">Última Partida</div>
+          <div class="stat-card-value" id="s-ultima-partida" style="font-size:22px;">—</div>
+        </div>
+        <div class="stat-card" style="display:flex; align-items:center; gap:1.25rem;">
+          <div>
+            <div class="stat-card-label">Rating</div>
+            <div class="stat-card-value big" id="s-rating">—</div>
+          </div>
+          <div id="s-estado-wrap"></div>
+        </div>
+      </div>
+
+      <p class="section-title">ESTATÍSTICAS DE CAMPO</p>
+
+      <div class="stats-grid-4" id="stats-linha1"></div>
+
+      <div class="stats-grid-4" id="stats-linha2"></div>
+
+      <div class="inspect-actions">
+        <button class="btn-danger"    onclick="deletarAtual()">EXCLUIR ATLETA</button>
+        <button class="btn-edit-full" onclick="editarAtual()">EDITAR DADOS</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="../js/jogadores.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TalentoBR — Adicionar Jogador</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/style.css">
+  <link rel="stylesheet" href="../styles/adicionar-jogadores.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <button class="btn-back" onclick="voltar()">← Jogadores</button>
+    <span class="nav-logo-text">TalentoBR</span>
+  </div>
+</nav>
+
+<main>
+
+  <div class="player-preview">
+    <div class="preview-avatar" id="preview-avatar"
+         onclick="document.getElementById('foto-input-hidden').click()">
+      <span class="preview-initials" id="preview-initials">?</span>
+    </div>
+    <input type="file" id="foto-input-hidden" accept="image/*"
+           style="display:none" onchange="handleFotoHidden(event)">
+
+    <div class="preview-info">
+      <div class="preview-nome" id="preview-nome">Nome do Atleta</div>
+      <div class="preview-sub"  id="preview-sub">Posição · Idade · Altura · Peso</div>
+    </div>
+
+    <div class="preview-rating-wrap">
+      <div class="preview-rating" id="preview-rating">—</div>
+      <div class="preview-rating-lbl">Rating</div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="section-title">Dados Pessoais</div>
+    <div class="fields-grid">
+
+      <div class="field full">
+        <label>Nome completo do Atleta</label>
+        <input type="text" id="f-nome" placeholder="Ex: Marlon dos Santos" oninput="updatePreview()">
+      </div>
+
+      <div class="field full">
+        <label>Descrição / Observação</label>
+        <textarea id="f-descricao"
+          placeholder="Atleta com grande potencial e visão de jogo."
+          oninput="updatePreview()"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Idade</label>
+        <input type="number" id="f-idade" placeholder="Ex: 20" min="10" max="45" oninput="updatePreview()">
+      </div>
+
+      <div class="field">
+        <label>
+          Posição
+          <span id="modalidade-badge"
+            style="font-size:10px; background:var(--green-dim); border:1px solid var(--border);
+                   border-radius:10px; padding:1px 7px; color:var(--green); font-weight:600;
+                   letter-spacing:0.06em; margin-left:4px; text-transform:uppercase;"></span>
+        </label>
+        <select id="f-posicao" onchange="updatePreview()">
+          <option value="">Selecionar</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Altura (m)</label>
+        <input type="text" id="f-altura" placeholder="Ex: 1.74" oninput="updatePreview()">
+      </div>
+
+      <div class="field">
+        <label>Peso (kg)</label>
+        <input type="number" id="f-peso" placeholder="Ex: 75" oninput="updatePreview()">
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="section-title">Avaliação</div>
+    <div class="fields-grid">
+
+      <div class="field">
+        <label>Rating Geral</label>
+        <input type="number" id="f-rating" placeholder="Ex: 8.5" min="1" max="10" step="0.1" oninput="updatePreview()">
+      </div>
+
+      <div class="field">
+        <label>Estado de Forma</label>
+        <select id="f-estado" onchange="updatePreview()">
+          <option value="">Selecionar</option>
+          <option>Excelente</option>
+          <option>Bem</option>
+          <option>Regular</option>
+          <option>Lesionado</option>
+          <option>Em Observação</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Última Partida</label>
+        <input type="date" id="f-ultima-partida">
+      </div>
+
+      <div class="field">
+        <label>Tempo médio de jogo (min)</label>
+        <input type="number" id="f-tempo-jogo" placeholder="Ex: 15" min="0" max="90">
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="section-title" id="stats-section-title">Estatísticas de Campo</div>
+    <div class="fields-grid" id="stats-campos">
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="section-title">Foto do Atleta</div>
+    <div class="foto-area" id="foto-area" onclick="document.getElementById('foto-input').click()">
+      <div class="foto-area-text" id="foto-text">
+        <strong>+</strong>
+        Clique para adicionar foto do atleta
+      </div>
+      <input type="file" id="foto-input" accept="image/*" onchange="handleFoto(event)">
+    </div>
+    <div class="foto-preview-wrap" id="foto-preview-wrap">
+      <img id="foto-preview-img" src="" alt="Preview">
+      <button class="foto-remove" onclick="removerFoto()">✕</button>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button class="btn-cancel"    onclick="voltar()">CANCELAR</button>
+    <button class="btn-finalizar" onclick="salvarJogador()">✓ FINALIZAR</button>
+  </div>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script src="../js/adicionar-jogador.js"></script>
+</body>
+</html>

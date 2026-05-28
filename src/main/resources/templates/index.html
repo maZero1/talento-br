@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TalentoBR — Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/styles/style.css}">
+  <link rel="stylesheet" th:href="@{/styles/index.css}">
+</head>
+<body>
+
+<div class="container">
+  <div class="logo-wrap">
+    <img src="Logo_com_nome.png" alt="TalentoBR"
+         onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block'">
+    <div id="logo-text" style="display:none; font-family:'Bebas Neue',sans-serif; font-size:42px; color:var(--green); letter-spacing:0.05em;">
+      Talento<span style="color:var(--text)">BR</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('login')">Entrar</button>
+      <button class="tab"        onclick="switchTab('register')">Cadastrar</button>
+    </div>
+
+    <div id="form-login" class="form-section active">
+      <div id="login-error" class="error-msg">E-mail ou senha incorretos. Tente novamente.</div>
+
+      <div class="field">
+        <label>E-mail</label>
+        <input type="email" id="login-email" placeholder="tecnico@talentobr.com">
+      </div>
+      <div class="field">
+        <label>Senha</label>
+        <input type="password" id="login-password" placeholder="••••••••">
+      </div>
+
+      <button class="btn-primary" onclick="doLogin()">ENTRAR NO SISTEMA</button>
+
+      <div class="divider">acesso demo</div>
+
+      <div class="demo-badge">
+        mock <strong>demo@talentobr.com</strong> / <strong>talento123</strong>
+      </div>
+    </div>
+
+    <div id="form-register" class="form-section">
+      <div id="register-success" class="success-msg">Conta criada! Agora faça login com seu e-mail.</div>
+      <div id="register-error"   class="error-msg">Preencha todos os campos corretamente.</div>
+
+      <div class="field">
+        <label>Nome completo</label>
+        <input type="text" id="reg-name" placeholder="Carlos Técnico">
+      </div>
+      <div class="field">
+        <label>E-mail</label>
+        <input type="email" id="reg-email" placeholder="voce@email.com">
+      </div>
+      <div class="field">
+        <label>Senha</label>
+        <input type="password" id="reg-password" placeholder="mínimo 6 caracteres">
+        <div class="hint">Mínimo <span>6 caracteres</span></div>
+      </div>
+      <div class="field">
+        <label>Nome do Clube / Escolinha</label>
+        <input type="text" id="reg-clube" placeholder="Ex: Escolinha Campeões do Amanhã">
+      </div>
+
+      <button class="btn-primary" onclick="doRegister()">CRIAR CONTA</button>
+    </div>
+  </div>
+
+  <div class="footer-text">TalentoBR &copy; 2026 — MarMi Solutions</div>
+</div>
+
+<script src="../js/index.js"></script>
+</body>
+</html>

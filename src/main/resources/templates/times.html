@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TalentoBR — Meus Times</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/style.css">
+  <link rel="stylesheet" href="../styles/times.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <img src="Logo sem nome.png" alt="TalentoBR" onerror="this.style.display='none'">
+    <span class="nav-logo-text">TalentoBR</span>
+  </div>
+  <div class="nav-right">
+    <span class="nav-user">Olá, <strong id="user-name">—</strong></span>
+    <button class="btn-logout" onclick="logout()">Sair</button>
+  </div>
+</nav>
+
+<main>
+  <div class="page-header">
+    <div>
+      <div class="page-title">MEUS TIMES</div>
+      <div class="page-subtitle" id="clube-nome">Carregando...</div>
+    </div>
+    <button class="btn-primary" onclick="openModal()">+ CRIAR TIME</button>
+  </div>
+
+  <div class="times-grid" id="times-grid"></div>
+
+  <div class="empty-state" id="empty-state" style="display:none;">
+    <div class="empty-icon"></div>
+    <h3>Nenhum time criado ainda</h3>
+    <p>Crie seu primeiro time para começar a gerenciar seus atletas.</p>
+    <button class="btn-primary" onclick="openModal()">+ CRIAR PRIMEIRO TIME</button>
+  </div>
+</main>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-title">CRIAR TIME</div>
+
+    <div class="field">
+      <label>Nome do Time</label>
+      <input type="text" id="time-nome" placeholder="Ex: Sub-15 Furacões">
+    </div>
+    <div class="field">
+      <label>Nome do Técnico</label>
+      <input type="text" id="time-tecnico" placeholder="Ex: Carlos Silva">
+    </div>
+    <div class="field">
+      <label>Modalidade</label>
+      <select id="time-modalidade">
+        <option value="Futebol de Campo">Futebol de Campo</option>
+        <option value="Futebol Society">Futebol Society</option>
+        <option value="Futsal">Futsal</option>
+        <option value="Futebol Feminino">Futebol Feminino</option>
+        <option value="Vôlei">Vôlei</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Descrição (opcional)</label>
+      <textarea id="time-descricao" placeholder="Breve descrição do time..."></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-secondary"     onclick="closeModal()">CANCELAR</button>
+      <button class="btn-primary-modal" onclick="criarTime()">CRIAR TIME</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/times.js"></script>
+</body>
+</html>

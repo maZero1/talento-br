@@ -1,0 +1,282 @@
+.layout {
+  display: flex;
+  height: calc(100vh - 60px);
+}
+
+.sidebar {
+  width: 300px;
+  min-width: 300px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar-header {
+  padding: 1.5rem 1.25rem 1rem;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.time-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--green-dim);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+
+.sidebar-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.sidebar-desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
+
+.stat-row { display: flex; gap: 16px; }
+.stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--green); line-height: 1; }
+.stat-lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+.sidebar-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.75rem;
+}
+.sidebar-list::-webkit-scrollbar       { width: 4px; }
+.sidebar-list::-webkit-scrollbar-track { background: transparent; }
+.sidebar-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.jogador-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: 1px solid transparent;
+  margin-bottom: 4px;
+}
+.jogador-item:hover  { background: var(--surface2); }
+.jogador-item.active { background: var(--green-dim); border-color: var(--border); }
+
+.jogador-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--surface2);
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px; color: var(--green);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.jogador-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.jogador-info     { flex: 1; min-width: 0; }
+.jogador-nome     { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.jogador-meta     { font-size: 11px; color: var(--muted); }
+.jogador-rating   { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--green); flex-shrink: 0; }
+
+.btn-add-jogador {
+  margin: 0.75rem;
+  background: var(--green-dim);
+  border: 1px dashed rgba(45, 184, 118, 0.25);
+  border-radius: 10px;
+  padding: 12px;
+  color: var(--green);
+  font-family: 'Barlow', sans-serif;
+  font-size: 13px; font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  flex-shrink: 0;
+}
+.btn-add-jogador:hover { background: rgba(45, 184, 118, 0.16); border-color: var(--green); }
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+}
+.content::-webkit-scrollbar       { width: 4px; }
+.content::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.empty-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--muted);
+  text-align: center;
+  gap: 12px;
+}
+.empty-content .icon { font-size: 52px; opacity: 0.2; }
+.empty-content h3    { font-size: 18px; color: var(--text); }
+.empty-content p     { font-size: 14px; max-width: 280px; }
+
+.inspect-wrap      { display: none; animation: fadeUp 0.25s ease; max-width: 680px; }
+.inspect-wrap.show { display: block; }
+
+.inspect-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.inspect-avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--green-dim);
+  border: 2px solid var(--green);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px; color: var(--green);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.inspect-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.inspect-info { flex: 1; }
+
+.inspect-nome {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.inspect-sub  { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+.inspect-desc { font-size: 13px; color: var(--text); line-height: 1.5; opacity: 0.8; }
+
+.inspect-edit {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 14px;
+  transition: all 0.2s; color: var(--muted);
+}
+.inspect-edit:hover { border-color: var(--green); color: var(--green); }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+}
+
+.stat-card-label {
+  font-size: 11px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.07em;
+  margin-bottom: 4px;
+}
+
+.stat-card-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  color: var(--green);
+  line-height: 1;
+}
+.stat-card-value.big { font-size: 40px; }
+.stat-card-sub       { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+.stats-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.stat-card-sm {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  text-align: center;
+}
+.stat-card-sm .lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+.stat-card-sm .val { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--text); line-height: 1; }
+
+.section-title {
+  font-size: 11px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 10px; padding-left: 2px;
+}
+
+.estado-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--green-dim);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 12px; font-weight: 600;
+  color: var(--green);
+}
+
+.inspect-actions { display: flex; gap: 10px; margin-top: 1rem; }
+
+.btn-danger {
+  flex: 1;
+  background: transparent;
+  border: 1px solid rgba(224, 85, 85, 0.25);
+  border-radius: 8px;
+  padding: 10px;
+  color: var(--danger);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px; letter-spacing: 0.08em;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-danger:hover { background: rgba(224, 85, 85, 0.08); border-color: var(--danger); }
+
+.btn-edit-full {
+  flex: 2;
+  background: var(--green-dim);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  color: var(--green);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px; letter-spacing: 0.08em;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-edit-full:hover { background: rgba(45, 184, 118, 0.16); }
+
+@media (max-width: 640px) {
+  .sidebar     { width: 100%; min-width: unset; }
+  .layout      { flex-direction: column; height: auto; }
+  .content     { display: none; }
+  .sidebar     { height: calc(100vh - 60px); }
+}
