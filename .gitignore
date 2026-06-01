@@ -1,4 +1,6 @@
 HELP.md
+
+### Maven ###
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -9,15 +11,18 @@ target/
 .classpath
 .factorypath
 .project
-.settings
+.settings/
 .springBeans
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
+
+### VS Code ###
+.vscode/
 
 ### NetBeans ###
 /nbproject/private/
@@ -25,9 +30,27 @@ target/
 /dist/
 /nbdist/
 /.nb-gradle/
+
+### Build ###
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
-.vscode/
+### OS ###
+.DS_Store
+Thumbs.db
+
+### Logs ###
+*.log
+logs/
+
+### Environment ###
+.env
+.env.local
+
+### Frontend ###
+node_modules/
+
+### Generated ###
+out/
+bin/
