@@ -280,3 +280,10 @@
   .content     { display: none; }
   .sidebar     { height: calc(100vh - 60px); }
 }
+@view-transition{
+  navigation: auto;
+  animation: fadeUp 0.3s ease-out;
+}
+::view-transition-group(:root) {
+  animation-duration: 1s
+}

@@ -199,3 +199,10 @@ main {
   transition: background 0.2s;
 }
 .btn-primary-modal:hover { background: #38d48a; }
+@view-transition{
+  navigation: auto;
+  animation: fadeUp 0.3s ease-out;
+}
+::view-transition-group(:root) {
+  animation-duration: 1s
+}
