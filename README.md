@@ -14,9 +14,9 @@ Centralizar avaliações por **clube** com **isolamento de dados** (`clube_id`),
 
 **Componente** | **Tecnologia**
 ---|---:
-**Backend** | Python (FastAPI)
+**Backend** | Spring Boot
 **Banco / Auth** | Supabase (Postgres + Auth)
-**Frontend** | HTML5, CSS3, JavaScript (Vanilla) + Jinja
+**Frontend** | React
 **Gráficos** | Chart.js
 
 ---
