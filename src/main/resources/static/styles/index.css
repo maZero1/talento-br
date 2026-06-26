@@ -237,3 +237,10 @@ input::placeholder { color: rgba(110,144,128,0.45); }
   color: var(--muted);
   margin-top: 1.5rem;
 }
+@view-transition{
+  navigation: auto;
+  animation: fadeUp 0.3s ease-out;
+}
+::view-transition-group(:root) {
+  animation-duration: 1s
+}

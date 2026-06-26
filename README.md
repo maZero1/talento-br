@@ -14,9 +14,9 @@ Centralizar avaliações por **clube** com **isolamento de dados** (`clube_id`),
 
 **Componente** | **Tecnologia**
 ---|---:
-**Backend** | Python (FastAPI)
+**Backend** | Spring Boot
 **Banco / Auth** | Supabase (Postgres + Auth)
-**Frontend** | HTML5, CSS3, JavaScript (Vanilla) + Jinja
+**Frontend** | React
 **Gráficos** | Chart.js
 
 ---
@@ -28,4 +28,4 @@ Centralizar avaliações por **clube** com **isolamento de dados** (`clube_id`),
 - **Dashboard**: cards resumo, gráfico radar e feed de avaliações.  
 - **Perfil do Atleta**: evolução, histórico de lesões e parecer técnico.  
 - **Comparativo Versus** e **Exportação de Card**.  
-- **Gestão de Planos**: Free / Pro / Elite (limites e upgrade).
+- **Gestão de Planos**: Free / Pro / Elite (limites e upgrade)

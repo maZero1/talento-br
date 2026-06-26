@@ -228,3 +228,10 @@ textarea           { min-height: 80px; }
 }
 .btn-finalizar:hover  { background: #38d48a; box-shadow: 0 3px 22px rgba(45, 184, 118, 0.32); }
 .btn-finalizar:active { transform: scale(0.98); }
+@view-transition{
+  navigation: auto;
+  animation: fadeUp 0.3s ease-out;
+}
+::view-transition-group(:root) {
+  animation-duration: 1s
+}
