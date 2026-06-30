@@ -1,0 +1,249 @@
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  animation: fadeUp 0.3s ease;
+}
+
+.player-preview {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.player-preview::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+  opacity: 0.5;
+}
+
+.preview-avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--green-dim);
+  border: 2px solid var(--green);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--green);
+  flex-shrink: 0;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.preview-avatar:hover                   { border-color: #38d48a; }
+.preview-avatar:hover .preview-initials { opacity: 0; }
+.preview-avatar img                     { width: 100%; height: 100%; object-fit: cover; }
+.preview-initials                       { transition: opacity 0.2s; }
+
+.preview-info  { flex: 1; }
+
+.preview-nome {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.preview-sub { font-size: 13px; color: var(--muted); }
+
+.preview-rating-wrap { text-align: center; }
+
+.preview-rating {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  color: var(--green);
+  line-height: 1;
+}
+
+.preview-rating-lbl {
+  font-size: 10px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+
+.form-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.06em;
+  color: var(--green);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.fields-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.field.full { grid-column: 1 / -1; }
+
+label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 5px;
+}
+
+input, select, textarea { padding: 10px 12px; font-size: 14px; }
+input::placeholder { color: rgba(110, 144, 128, 0.38); }
+textarea           { min-height: 80px; }
+
+.counter-label {
+  font-size: 11px; font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 5px;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg);
+  border: 1px solid rgba(45, 184, 118, 0.12);
+  border-radius: 8px;
+  padding: 6px 10px;
+  transition: border-color 0.2s;
+}
+.counter:focus-within { border-color: var(--green); }
+
+.counter-btn {
+  width: 28px; height: 28px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--green);
+  font-size: 16px; font-weight: 700;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s;
+  line-height: 1;
+}
+.counter-btn:hover  { background: var(--green-dim); }
+.counter-btn:active { transform: scale(0.92); }
+
+.counter-val {
+  flex: 1;
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  color: var(--text);
+  outline: none;
+  background: transparent;
+  border: none;
+  width: 40px;
+}
+
+.foto-area {
+  border: 1px dashed rgba(45, 184, 118, 0.25);
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: var(--bg);
+}
+.foto-area:hover         { border-color: var(--green); background: var(--green-dim); }
+.foto-area input         { display: none; }
+.foto-area-text          { font-size: 13px; color: var(--muted); }
+.foto-area-text strong   { color: var(--green); display: block; font-size: 22px; margin-bottom: 4px; }
+
+.foto-preview-wrap       { display: none; position: relative; }
+.foto-preview-wrap img   { width: 100%; max-height: 180px; object-fit: cover; border-radius: 8px; }
+
+.foto-remove {
+  position: absolute; top: 6px; right: 6px;
+  background: rgba(0, 0, 0, 0.65);
+  border: none; border-radius: 6px;
+  color: var(--danger);
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 14px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 1.5rem;
+}
+
+.btn-cancel {
+  flex: 1;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  color: var(--muted);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px; letter-spacing: 0.08em;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-cancel:hover { border-color: rgba(45, 184, 118, 0.35); color: var(--text); }
+
+.btn-finalizar {
+  flex: 3;
+  background: var(--green);
+  color: #061410;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px; letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  box-shadow: 0 3px 16px rgba(45, 184, 118, 0.22);
+}
+.btn-finalizar:hover  { background: #38d48a; box-shadow: 0 3px 22px rgba(45, 184, 118, 0.32); }
+.btn-finalizar:active { transform: scale(0.98); }
+@view-transition{
+  navigation: auto;
+  animation: fadeUp 0.3s ease-out;
+}
+::view-transition-group(:root) {
+  animation-duration: 1s
+}
+
+main input[type="number"]::-webkit-outer-spin-button,
+main input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+main input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
