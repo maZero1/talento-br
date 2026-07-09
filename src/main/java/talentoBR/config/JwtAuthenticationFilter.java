@@ -14,16 +14,6 @@ import talentoBR.repository.UserRepository;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Roda em toda requisição: se vier um header "Authorization: Bearer <token>"
- * válido, marca o usuário como autenticado para o Spring Security.
- * Rotas públicas (ex: /api/auth/**) simplesmente seguem sem usuário autenticado.
- *
- * Não é um @Component de propósito: é instanciado manualmente dentro do
- * SecurityConfig (addFilterBefore) para não ser registrado duas vezes
- * (uma pelo Spring Boot como filtro de servlet genérico, outra pela cadeia
- * do Spring Security).
- */
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
