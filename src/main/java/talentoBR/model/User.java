@@ -9,13 +9,16 @@ import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import java.time.OffsetDateTime;
+import lombok.Builder;
+@Builder
 @Entity
 @Table(name = "users")
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,4 +42,5 @@ public class User {
 
     @Column(name = "created_at")
     private OffsetDateTime createdAt = OffsetDateTime.now();
+
 }
