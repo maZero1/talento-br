@@ -27,7 +27,6 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        // BCrypt: faz o hash da senha com salt automático. Nunca guardamos a senha em texto puro.
         return new BCryptPasswordEncoder();
     }
 
@@ -53,7 +52,6 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        // Ajuste aqui quando o front (React) tiver uma URL definida (dev e produção)
         config.setAllowedOrigins(List.of("http://localhost:5173", "http://localhost:3000"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));

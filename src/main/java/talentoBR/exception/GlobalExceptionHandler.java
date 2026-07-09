@@ -21,7 +21,6 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", ex.getMessage()));
     }
 
-    // Erros de validação dos DTOs (@NotBlank, @Email, @Size etc.)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidacao(MethodArgumentNotValidException ex) {
         String mensagem = ex.getBindingResult().getFieldErrors().stream()
@@ -29,5 +28,11 @@ public class GlobalExceptionHandler {
                 .map(erro -> erro.getDefaultMessage())
                 .orElse("Dados inválidos.");
         return ResponseEntity.badRequest().body(Map.of("message", mensagem));
+    }
+
+    @ExceptionHandler(AcessoNegadoException.class)
+    public ResponseEntity<?> handleAcessoNegado(AcessoNegadoException ex) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+            .body(Map.of("erro", ex.getMessage()));
     }
 }
