@@ -19,6 +19,11 @@ public class TimeService {
         this.usuarioAtualProvider = usuarioAtualProvider;
     }
 
+    public List<Time> listarDoUsuarioAtual() {
+        Clube clube = usuarioAtualProvider.getUsuarioAtual().getClube();
+        return timeRepository.findByClubeId(clube.getId());
+    }
+
     public List<Time> listarPorClube(UUID clubeId) {
         return timeRepository.findByClubeId(clubeId);
     }

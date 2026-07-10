@@ -21,6 +21,11 @@ public class TimeController {
         return timeService.listarPorClube(clubeId);
     }
 
+    @GetMapping("/meus")
+        public List<Time> listarMeusTimes() {
+        return timeService.listarDoUsuarioAtual();
+    }
+
     @GetMapping("/{id}")
     public Time buscar(@PathVariable UUID id) { return timeService.buscarPorId(id); }
 

@@ -3,6 +3,9 @@ package talentoBR.service;
 import talentoBR.model.Atleta;
 import talentoBR.model.Time;
 import talentoBR.repository.AtletaRepository;
+import talentoBR.repository.AvaliacaoRepository;
+import talentoBR.repository.EstatisticaRepository;
+import talentoBR.repository.LesaoHistoricoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,10 +15,19 @@ import java.util.UUID;
 public class AtletaService {
     private final AtletaRepository atletaRepository;
     private final TimeService timeService;
+    private final EstatisticaRepository estatisticaRepository;
+    private final AvaliacaoRepository avaliacaoRepository;
+    private final LesaoHistoricoRepository lesaoHistoricoRepository;
 
-    public AtletaService(AtletaRepository atletaRepository, TimeService timeService) {
+    public AtletaService(AtletaRepository atletaRepository, TimeService timeService,
+                        EstatisticaRepository estatisticaRepository,
+                        AvaliacaoRepository avaliacaoRepository,
+                        LesaoHistoricoRepository lesaoHistoricoRepository) {
         this.atletaRepository = atletaRepository;
         this.timeService = timeService;
+        this.estatisticaRepository = estatisticaRepository;
+        this.avaliacaoRepository = avaliacaoRepository;
+        this.lesaoHistoricoRepository = lesaoHistoricoRepository;
     }
 
     public List<Atleta> listarPorTime(UUID timeId) {
@@ -57,6 +69,11 @@ public class AtletaService {
     public void deletar(UUID id) {
         Atleta existente = buscarPorId(id);
         timeService.validarPropriedadePublica(existente.getClube());
+
+        estatisticaRepository.deleteAll(estatisticaRepository.findByAtletaId(id));
+        avaliacaoRepository.deleteAll(avaliacaoRepository.findByAtletaId(id));
+        lesaoHistoricoRepository.deleteAll(lesaoHistoricoRepository.findByAtletaId(id));
+
         atletaRepository.delete(existente);
     }
 }

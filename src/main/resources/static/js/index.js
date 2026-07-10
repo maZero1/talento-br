@@ -1,9 +1,4 @@
-const DEMO = {
-  email: 'demo@talentobr.com',
-  password: 'talento123',
-  name: 'Técnico Demo',
-  clube: 'Escolinha Demo',
-};
+const API_BASE = 'http://localhost:8080/api';
 
 function switchTab(tab) {
   document.querySelectorAll('.tab').forEach((t, i) => {
@@ -11,51 +6,82 @@ function switchTab(tab) {
   });
   document.getElementById('form-login').classList.toggle('active', tab === 'login');
   document.getElementById('form-register').classList.toggle('active', tab === 'register');
-  document.getElementById('login-error').style.display    = 'none';
+  document.getElementById('login-error').style.display = 'none';
   document.getElementById('register-error').style.display = 'none';
   document.getElementById('register-success').style.display = 'none';
 }
 
-function doLogin() {
-  const email  = document.getElementById('login-email').value.trim();
-  const pass   = document.getElementById('login-password').value;
-  const errEl  = document.getElementById('login-error');
+async function doLogin() {
+  const email = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
+  const errEl = document.getElementById('login-error');
 
-  const stored = JSON.parse(localStorage.getItem('tb_users') || '[]');
-  const found  = stored.find(u => u.email === email && u.password === pass);
-  const isDemo = (email === DEMO.email && pass === DEMO.password);
+  try {
+    const res = await fetch(`${API_BASE}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
 
-  if (isDemo || found) {
-    const user = isDemo ? DEMO : found;
-    sessionStorage.setItem('tb_user', JSON.stringify(user));
+    if (!res.ok) {
+      errEl.textContent = 'E-mail ou senha inválidos.';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    const data = await res.json();
+    sessionStorage.setItem('tb_token', data.token);
+    sessionStorage.setItem('tb_user', JSON.stringify({
+      name: data.nome,
+      email: data.email,
+      clube: data.nomeClube
+    }));
+
     errEl.style.display = 'none';
     window.location.href = 'times.html';
-  } else {
+  } catch (err) {
+    errEl.textContent = 'Não foi possível conectar ao servidor.';
     errEl.style.display = 'block';
   }
 }
 
-function doRegister() {
-  const name  = document.getElementById('reg-name').value.trim();
+async function doRegister() {
+  const nome = document.getElementById('reg-name').value.trim();
   const email = document.getElementById('reg-email').value.trim();
-  const pass  = document.getElementById('reg-password').value;
-  const clube = document.getElementById('reg-clube').value.trim();
+  const password = document.getElementById('reg-password').value;
+  const nomeClube = document.getElementById('reg-clube').value.trim();
   const errEl = document.getElementById('register-error');
   const sucEl = document.getElementById('register-success');
 
-  if (!name || !email || pass.length < 6 || !clube) {
+  if (!nome || !email || password.length < 6 || !nomeClube) {
+    errEl.textContent = 'Preencha todos os campos. A senha precisa ter ao menos 6 caracteres.';
     errEl.style.display = 'block';
     sucEl.style.display = 'none';
     return;
   }
 
-  const users = JSON.parse(localStorage.getItem('tb_users') || '[]');
-  users.push({ name, email, password: pass, clube });
-  localStorage.setItem('tb_users', JSON.stringify(users));
+  try {
+    const res = await fetch(`${API_BASE}/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nome, email, password, nomeClube })
+    });
 
-  errEl.style.display = 'none';
-  sucEl.style.display = 'block';
-  setTimeout(() => switchTab('login'), 1500);
+    if (!res.ok) {
+      const erro = await res.json().catch(() => ({}));
+      errEl.textContent = erro.erro || erro.message || 'Não foi possível cadastrar.';
+      errEl.style.display = 'block';
+      sucEl.style.display = 'none';
+      return;
+    }
+
+    errEl.style.display = 'none';
+    sucEl.style.display = 'block';
+    setTimeout(() => switchTab('login'), 1500);
+  } catch (err) {
+    errEl.textContent = 'Não foi possível conectar ao servidor.';
+    errEl.style.display = 'block';
+  }
 }
 
 document.addEventListener('keydown', e => {
@@ -64,6 +90,6 @@ document.addEventListener('keydown', e => {
   else doRegister();
 });
 
-if (sessionStorage.getItem('tb_user')) {
+if (sessionStorage.getItem('tb_token')) {
   window.location.href = 'times.html';
 }
